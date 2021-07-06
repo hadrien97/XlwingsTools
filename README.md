@@ -9,7 +9,7 @@ By default xlwings doesn't allow to resize a table or a range to fit the desire 
 import xlwings as xw
 sheet = xw.Book().sheets[0]
 df = pd.DataFrame([[1.1, 2.2], [3.3, None]], columns=['one', 'two'])
-sheet.range('A1').xsize[df]
+sheet.range('Table1').xsize[df]
 ```
 
 ### Save range as picture
