@@ -4,7 +4,7 @@ Xlwings is a great tool when needing to interact with Excel, however some functi
 This script add the following functionalities:
 
 ### Resizing table
-By default xlwings doesn't allow to resize a table or a range to fit the desire dataframe.
+By default xlwings doesn't allow to resize a table or a label to fit the desire dataframe.
 ```
 import xlwings as xw
 sheet = xw.Book().sheets[0]
