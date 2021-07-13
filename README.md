@@ -5,6 +5,7 @@ This script adds the following functionalities:
 
 ### Resizing table
 By default xlwings doesn't allow to resize a table or a label to fit the desire dataframe.
+This new method resize the table to the length of the dataframe and then paste the dataframe to the resized table
 ```
 import xlwings as xw
 sheet = xw.Book().sheets[0]
