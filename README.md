@@ -13,9 +13,26 @@ df = pd.DataFrame([[1.1, 2.2], [3.3, None]], columns=['one', 'two'])
 sheet.range('Table1').xsize[df]
 ```
 
+### Read Table
+By default xlwings doesn't read the title of the table. The read_table method return a dataframe table with column name.
+The input of the method are True if you want to read the headers an False otherwise
+```
+import xlwings as xw
+sheet = xw.Book().sheets[0]
+sheet.range('Table1')read_table[True]
+```
+
 ### Save range as picture
 ```
 import xlwings as xw
 sheet = xw.Book().sheets[0]
 sheet.range('A1:B5').save['path.png']
+```
+
+### MessageBox
+Create a dialogue box for excel
+```
+import xlwings as xw
+sheet = xw.Book().sheets[0]
+sheet.MsgBox['Title','Text']
 ```
