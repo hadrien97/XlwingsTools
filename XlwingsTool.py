@@ -64,10 +64,30 @@ class MsgBox:
 
     def __getitem__(self, item):
         title,text = item
-        win32api.MessageBox(self.frame.app.hwnd, text, title)
+        win32api.MessageBox(xw.apps.active.api.Hwnd, text, title)
+        
+class Read_Table:
+    """
+    Read a table with the header included
+    """
+
+    def __init__(self, frame):
+        self.frame = frame
+
+    def __getitem__(self, item):
+        header = item
+        data = pd.DataFrame(self.frame.value)
+        upper_right_table = (self.frame.row-1, self.frame.column + self.frame.shape[1]-1)
+        if header:
+            header_labels = self.frame.sheet.range((self.frame.row - 1, self.frame.column),upper_right_table).options(np.array).value
+            data.columns = header_labels
+        return data
 
 
 # add the attributes to the xlwings library
 xw.main.Range.save = property(lambda frame: savepng(frame))
 xw.main.Range.xresize = property(lambda frame: Resize_Table(frame))
-xw.main.books.MsgBox = property(lambda frame: MsgBox(frame))
+xw.main.Range.read_table = property(lambda frame: Read_Table(frame))
+
+xw.Book.MsgBox = property(lambda frame: MsgBox(frame))
+xw.Sheet.MsgBox = property(lambda frame: MsgBox(frame))
